@@ -1,0 +1,24 @@
+{
+  "name": "alarm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pringels/alarm.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pringels/alarm/issues"
+  },
+  "homepage": "https://github.com/Pringels/alarm#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "mplayer": "^2.1.0",
+    "node-schedule": "^1.3.0"
+  }
+}
