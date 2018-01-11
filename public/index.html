@@ -1,0 +1,59 @@
+<html>
+
+<head>
+    <script src="/app.js"></script>
+</head>
+
+<body>
+    <h1>Alarm!</h1>
+    <button id="start">START!</button>
+    <button id="stop">STOP</button>
+    <h2>Set date/time</h2>
+    <hr/>
+    <form id="alarmForm" method="post" name="alarmForm">
+        <input type="number" name="hour" placeholder="hh" max="24" value="" />
+        <input type="number" name="minute" placeholder="mm" max="59" value="" />
+        <input type="submit" value="Set" />
+    </form>
+</body>
+
+</html>
+
+<script>
+    const startButton = document.getElementById('start');
+    const stopButton = document.getElementById('stop');
+    const alarmForm = document.getElementById('alarmForm');
+
+    startButton.addEventListener('click', function () {
+        fetch('start').then(() => {
+            console.log('STARTED')
+        })
+    })
+
+    stopButton.addEventListener('click', function () {
+        fetch('stop').then(() => {
+            console.log('STOPPED')
+        })
+    })
+
+    alarmForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const formData = new FormData(this);
+        let jsonObject = {};
+
+        for (const [key, value] of formData.entries()) {
+            jsonObject[key] = value;
+        }
+
+        fetch("/setAlarm", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(jsonObject)
+        });
+    })
+
+
+</script>
