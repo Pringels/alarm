@@ -122,3 +122,9 @@ fetch(
     .then(function(body) {
         WEATHER = body.weather[0].main;
     });
+
+/**
+ * Init
+ */
+
+setAlarm();
