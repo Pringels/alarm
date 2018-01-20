@@ -43,9 +43,8 @@ function startAlarm() {
         start: 0,
         step: 1,
         target: player,
-        interval: 10
+        interval: 8000
     });
-    player.seekPercent(99);
 }
 
 function stopAlarm() {
@@ -96,7 +95,7 @@ app.post('/setAlarm', function(req, res) {
     res.send('Set alarm');
 });
 
-app.listen(3001);
+app.listen(3000, '0.0.0.0');
 
 /**
  * ### Scheduler
