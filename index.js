@@ -4,17 +4,19 @@ const schedule = require('node-schedule');
 const fetch = require('node-fetch');
 const env = require('node-env-file');
 const bodyParser = require('body-parser');
-
 env('.env');
 
 /**
  * ### Globals
  */
 
+process.env.TZ = 'Europe/Berlin';
+
 let START_TIME = '0 7 * * *';
 let STOP_TIME = '0 8 * * *';
 let WEATHER;
 let ALARM;
+let ALARM_STOP;
 
 /**
  * ### Audio controller
@@ -83,6 +85,23 @@ app.get('/start', function(req, res) {
     res.send('Alarm started');
 });
 
+app.get('/status', function(req, res) {
+    const date = new Date();
+
+    const startTime = ALARM
+        ? ALARM.nextInvocation().toString()
+        : 'No alarm set';
+    const endTime = ALARM_STOP
+        ? ALARM_STOP.nextInvocation().toString()
+        : 'No alarm set';
+
+    res.send({
+        time: date.toLocaleTimeString(),
+        startTime,
+        endTime
+    });
+});
+
 app.get('/stop', function(req, res) {
     stopAlarm();
     res.send('Alarm started');
@@ -102,8 +121,9 @@ app.listen(3000, '0.0.0.0');
  */
 function setAlarm() {
     ALARM && ALARM.cancel();
+    ALARM_STOP && ALARM_STOP.cancel();
     ALARM = schedule.scheduleJob(START_TIME, startAlarm);
-    schedule.scheduleJob(STOP_TIME, stopAlarm);
+    ALARM_STOP = schedule.scheduleJob(STOP_TIME, stopAlarm);
     console.log('ALARM SET');
 }
 

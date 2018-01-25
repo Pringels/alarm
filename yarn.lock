@@ -355,6 +355,13 @@ create-error-class@^3.0.0:
   dependencies:
     capture-stack-trace "^1.0.0"
 
+cron-converter@^0.0.12:
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/cron-converter/-/cron-converter-0.0.12.tgz#63b44e0dc400a1d721d6ea4bb22e866c7699834c"
+  dependencies:
+    moment-timezone "~0.5"
+    sprintf-js "~1"
+
 cron-parser@^2.4.0:
   version "2.4.3"
   resolved "https://registry.yarnpkg.com/cron-parser/-/cron-parser-2.4.3.tgz#cae844c20117fc72c678f63ac83c7884be199e78"
@@ -1207,7 +1214,7 @@ mixin-deep@^1.2.0:
   dependencies:
     minimist "0.0.8"
 
-moment-timezone@^0.5.0:
+moment-timezone@^0.5.0, moment-timezone@~0.5:
   version "0.5.14"
   resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.14.tgz#4eb38ff9538b80108ba467a458f3ed4268ccfcb1"
   dependencies:
@@ -1771,6 +1778,10 @@ split@0.3:
   resolved "https://registry.yarnpkg.com/split/-/split-0.3.3.tgz#cd0eea5e63a211dfff7eb0f091c4133e2d0dd28f"
   dependencies:
     through "2"
+
+sprintf-js@~1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.1.1.tgz#36be78320afe5801f6cea3ee78b6e5aab940ea0c"
 
 sshpk@^1.7.0:
   version "1.13.1"

@@ -19,6 +19,7 @@
     "homepage": "https://github.com/Pringels/alarm#readme",
     "dependencies": {
         "body-parser": "^1.18.2",
+        "cron-converter": "^0.0.12",
         "express": "^4.16.2",
         "mplayer": "^2.1.0",
         "node-env-file": "^0.1.8",

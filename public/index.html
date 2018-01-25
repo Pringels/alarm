@@ -2,19 +2,30 @@
 
 <head>
     <script src="/app.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <h1>Alarm!</h1>
-    <button id="start">START!</button>
-    <button id="stop">STOP</button>
-    <h2>Set date/time</h2>
-    <hr/>
-    <form id="alarmForm" method="post" name="alarmForm">
-        <input type="number" name="hour" placeholder="hh" max="24" value="" />
-        <input type="number" name="minute" placeholder="mm" max="59" value="" />
-        <input type="submit" value="Set" />
-    </form>
+    <div class="container">
+        <h1>Alarm!</h1>
+        <button class="btn btn-default" id="start">START!</button>
+        <button class="btn btn-warning" id="stop">STOP</button>
+        <h2>Set date/time</h2>
+        <hr/>
+        <form id="alarmForm" method="post" name="alarmForm">
+            <input class="form-control" type="number" name="hour" placeholder="hh" max="24" value="" />
+            <input class="form-control" type="number" name="minute" placeholder="mm" max="59" value="" />
+            <input class="btn btn-success" type="submit" value="Set" />
+        </form>
+        <h2>Status</h2>
+        <hr>
+        <ul id="status">
+
+        </ul>
+    </div>
 </body>
 
 </html>
@@ -23,6 +34,7 @@
     const startButton = document.getElementById('start');
     const stopButton = document.getElementById('stop');
     const alarmForm = document.getElementById('alarmForm');
+    const statusPanel = document.getElementById('status');
 
     startButton.addEventListener('click', function () {
         fetch('start').then(() => {
@@ -54,6 +66,18 @@
             body: JSON.stringify(jsonObject)
         });
     })
+
+    var statusInterval = setInterval(() => {
+        fetch('status')
+            .then(res => res.json())
+            .then((data) => {
+                statusPanel.innerHTML = `
+                    <li>Time: <b>${data.time}</b></li>
+                    <li>Start: <b>${data.startTime}</b></li>
+                    <li>End: <b>${data.endTime}</b></li>
+                `
+            })
+    }, 1000)
 
 
 </script>
